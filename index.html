@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yunesh — Graphics Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#153a5b; /* requested replacement for green */
+      --text:#0b0f14;
+      --muted:#657384;
+      --bg:#ffffff;
+      --accent:#f7a400; /* warm yellow accent similar to reference */
+      --chip:#f1f5f9;
+      --chip-text:#0f172a;
+      --ring:rgba(21,58,91,.12);
+      --shadow:0 10px 30px rgba(21,58,91,.08);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    header{position:sticky;top:0;z-index:50;background:var(--bg);box-shadow:0 1px 0 #eef2f7}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+   
+    .brand-name{font-weight:800;color:var(--primary);font-size:20px}
+    nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+    nav a{color:#475569;font-weight:600}
+    nav a.active{color:var(--primary)}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:56px 0}
+    .pill{display:inline-flex;align-items:center;gap:10px;background:#f8fafc;border:1px dashed var(--primary);color:var(--primary);padding:8px 12px;border-radius:10px;font-weight:700;font-size:14px}
+    h1{font-size:52px;line-height:1.05;margin:14px 0 12px}
+    .h1-accent{color:var(--primary)}
+    .sub{color:var(--muted);max-width:560px}
+    .hero-actions{display:flex;align-items:center;gap:16px;margin-top:26px}
+    .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;font-weight:700;border:2px solid transparent;padding:12px 18px;box-shadow:var(--shadow)}
+    .btn.primary{background:var(--accent);color:#0b0f14}
+    .btn.ghost{background:#fff;border-color:#e2e8f0;color:#0b0f14}
+    .btn .play{width:32px;height:32px;border-radius:999px;display:inline-grid;place-items:center;background:#fff;border:2px solid #e2e8f0}
+
+    /* Right hero visual */
+    .visual{position:relative;min-height:520px}
+    
+    .photo-card{position:absolute;right:0;bottom:0;width:min(460px,90%);background:#fff;border-radius:28px;padding:20px;border:1px solid #e2e8f0;box-shadow:var(--shadow)}
+    .photo-frame{position:relative;border-radius:20px;overflow:hidden;background:#f1f5f9;height:440px;display:grid;place-items:center;border:2px dashed #cbd5e1;color:#475569;font-weight:700}   
+    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Chips */
+    .chip{position:absolute;display:inline-flex;align-items:center;gap:8px;background:var(--chip);color:var(--chip-text);padding:10px 14px;border-radius:999px;border:1px solid #e2e8f0;box-shadow:var(--shadow);font-weight:700}
+    .chip.left{left:-12px;bottom:24px}
+    .chip.right{right:-12px;top:26px}
+
+    /* Sections */
+   .services-top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.services-top h2{margin:0}
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.service-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.icon-wrap{width:48px;height:48px;border-radius:12px;background:#f8fafc;border:1px solid #e2e8f0;display:grid;place-items:center;margin-bottom:14px}
+.icon-wrap svg{width:26px;height:26px;fill:var(--primary)}
+.service-card h3{margin:6px 0 8px;font-size:18px}
+.service-card p{color:var(--muted);font-size:14px;min-height:44px}
+.learn{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--primary)}
+.btn.combo{background:var(--primary);color:#fff}
+.btn.combo .circle{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:var(--accent);margin-left:10px;font-weight:900}
+@media (max-width:992px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.services-grid{grid-template-columns:1fr}}
+
+
+/* Work (Gallery) */
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-top:40px}
+.work-card{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer}
+.work-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease, filter .4s ease}
+.work-card:hover img{transform:scale(1.06);filter:brightness(0.9)}
+.work-card::after{content:"";position:absolute;inset:0;background:rgba(21,58,91,.2);opacity:0;transition:opacity .3s ease}
+.work-card:hover::after{opacity:1}
+
+    /* Footer */
+    footer{padding:40px 0;background:#0b1e2d;color:#cbd5e1;margin-top:40px}
+
+    /* Responsive */
+    @media (max-width: 992px){
+      .hero{grid-template-columns:1fr;gap:24px}
+      .visual{min-height:480px}
+      h1{font-size:44px}
+    }
+    @media (max-width: 640px){
+      nav ul{display:none}
+      .hero-actions{flex-wrap:wrap}
+      h1{font-size:38px}
+      .photo-frame{height:360px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+       
+        <div class="brand-name">Yunesh.</div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          
+        </ul>
+      </nav>
+      <a href="#contact" class="cta">Contact Me</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="container">
+    <section class="hero" aria-label="Hero">
+      <!-- Left -->
+      <div>
+        <span class="pill">Hello There!</span>
+        <h1>
+          I’m <span class="h1-accent">Yunesh Nepal</span>,<br />
+          Graphics Designer<br />
+          Based in Nepal.
+        </h1>
+        <p class="sub">I’m an experienced Graphics Designer with <strong>2+ years</strong> in the field, collaborating with various companies and startups.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#portfolio">
+            <span>View My Portfolio</span>
+          </a>
+          <a class="btn ghost" href="#contact">
+            <span class="play" aria-hidden="true">▶</span>
+            <span>Hire Me</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right visual -->
+      <div class="visual">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="photo-card">
+          <div class="photo-frame" id="photoFrame">
+            <!-- Replace the src below with your own photo path -->
+             <img src="12.png" alt="Portrait of Yunesh" /> 
+           
+          </div>
+          <!-- Chips / badges -->
+          <div class="chip left">Graphics Designer</div>
+          <div class="chip right">Thumbnail Designer</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Simple sections to make nav buttons functional -->
+ <section id="services" class="container">
+<div class="services-top">
+<div>
+<span class="pill" style="border-style:solid;border-width:0;background:transparent;color:var(--muted)">— Services</span>
+<h2><span style="color:var(--accent)">Services</span> <span class="light">I Provide</span></h2>
+</div>
+<a class="btn combo" href="#contact">Let's Talk For More <span class="circle">+</span></a>
+</div>
+
+
+<div class="services-grid">
+<!-- Card 1: Logo Design -->
+<article class="service-card">
+<div class="icon-wrap" aria-hidden="true">
+<!-- Pen nib / logo mark icon -->
+<svg viewBox="0 0 24 24"><path d="M14.5 3l6.5 6.5-6.96 6.96c-.27.27-.6.47-.97.57l-4.62 1.23 1.23-4.62c.1-.37.3-.7.57-.97L14.5 3zm-2.12 8.26a1.75 1.75 0 11-2.47 2.47 1.75 1.75 0 012.47-2.47zM4 21l5.2-1.39L4.39 14.8 3 20z"/></svg>
+</div>
+<h3>Logo Design</h3>
+<p>Memorable brand marks and identity systems crafted for clarity and impact.</p>
+<a class="learn" href="#contact">Learn more →</a>
+</article>
+
+
+<!-- Card 2: Thumbnail Design -->
+<article class="service-card">
+<div class="icon-wrap" aria-hidden="true">
+<!-- Thumbnail / video card icon -->
+<svg viewBox="0 0 24 24"><path d="M3 6a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6zm6 2h8v8H9V8zm-4 0h2v2H5V8zm0 4h2v2H5v-2zm0 4h2v2H5v-2zm8-6l3 2-3 2V10z"/></svg>
+</div>
+<h3>Thumbnail Design</h3>
+<p>Clickable YouTube/shorts thumbnails that boost CTR while staying on-brand.</p>
+<a class="learn" href="#contact">Learn more →</a>
+</article>
+
+
+<!-- Card 3: Social Media Design -->
+<article class="service-card">
+<div class="icon-wrap" aria-hidden="true">
+<!-- Social grid / post icon -->
+<svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm2 2v12h14V7H5zm2 2h4v4H7V9zm6 0h4v2h-4V9zm0 4h4v2h-4v-2zm-6 4h10v2H7v-2z"/></svg>
+</div>
+<h3>Social Media Design</h3>
+<p>Post templates, stories, and ads optimized for engagement across platforms.</p>
+<a class="learn" href="#contact">Learn more →</a>
+</article>
+</div>
+</section>
+
+  <section id="work" class="container">
+<h2><span style="color:var(--accent)">My Work</span></h2>
+<p class="lead">A curated showcase of my designs. Hover over each piece to explore it more vividly.</p>
+<div class="work-grid">
+<div class="work-card"><img src="1.png" alt="Work 1"></div>
+<div class="work-card"><img src="4.jpg" alt="Work 2"></div>
+<div class="work-card"><img src="2.png" alt="Work 3"></div>
+<div class="work-card"><img src="3.png" alt="Work 4"></div>
+<div class="work-card"><img src="4.jpg" alt="Work 5"></div>
+<div class="work-card"><img src="final draft.png" alt="Work 6"></div>
+<div class="work-card"><img src="1.png" alt="Work 7"></div>
+<div class="work-card"><img src="2.png" alt="Work 8"></div>
+<div class="work-card"><img src="3.png" alt="Work 9"></div>
+<div class="work-card"><img src="4.jpg" alt="Work 10"></div>
+<div class="work-card"><img src="1.png" alt="Work 11"></div>
+<div class="work-card"><img src="final draft.png" alt="Work 12"></div>
+</div>
+</section>
+
+
+  <section id="contact" class="container">
+    <h2>Contact</h2>
+    <p class="lead">Ready to collaborate? Use the form below or email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+    <form id="contactForm" class="contact-form" onsubmit="return false" style="display:grid;gap:12px;max-width:520px">
+      <input aria-label="Your Name" required placeholder="Your Name" style="padding:12px 14px;border-radius:12px;border:1px solid #e2e8f0" />
+      <input aria-label="Email" type="email" required placeholder="Email" style="padding:12px 14px;border-radius:12px;border:1px solid #e2e8f0" />
+      <textarea aria-label="Message" required placeholder="Your Message" rows="5" style="padding:12px 14px;border-radius:12px;border:1px solid #e2e8f0"></textarea>
+      <button class="btn primary" id="sendBtn" type="submit">Send Message</button>
+      <p id="formNote" class="lead" style="display:none">Thanks! This demo captured your input locally. Wire it to your backend or email service.</p>
+    </form>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Yunesh Nepal. All rights reserved.</div>
+      <div><a href="#home" style="color:#cbd5e1">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+          // set active nav link
+          document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+          const navLink=document.querySelector('nav a[href="'+id+'"]');
+          if(navLink) navLink.classList.add('active');
+        }
+      })
+    });
+
+    // Footer year
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Demo contact form handler
+    const form=document.getElementById('contactForm');
+    form.addEventListener('submit', ()=>{
+      document.getElementById('formNote').style.display='block';
+    });
+
+    // Helper: replace the hero image programmatically (optional)
+    // Drop a file onto the photo frame to preview instantly
+    const frame=document.getElementById('photoFrame');
+    frame.addEventListener('dragover', (e)=>{e.preventDefault(); frame.style.borderColor='var(--primary)';});
+    frame.addEventListener('dragleave', ()=>{frame.style.borderColor='#cbd5e1';});
+    frame.addEventListener('drop', (e)=>{
+      e.preventDefault();
+      const file=e.dataTransfer.files[0];
+      if(!file) return;
+      const img=document.createElement('img');
+      img.src=URL.createObjectURL(file);
+      img.alt='Portrait of Yunesh';
+      frame.innerHTML='';
+      frame.appendChild(img);
+      frame.style.borderColor='#cbd5e1';
+    });
+  </script>
+</body>
+</html>
